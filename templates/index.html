@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head><title>Inventario</title>
+<style>
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+      background-color: #d4f4dd; /* verde claro */
+    }
+    th, td {
+      border: 1px solid #4CAF50; /* verde oscuro para bordes */
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #a8d5a3; /* verde un poco más oscuro para encabezados */
+      color: #ffffff;
+    }
+    tr:nth-child(even) {
+      background-color: #c9e6c8; /* verde claro alternado para filas pares */
+    }
+    tr:hover {
+      background-color: #b3d9a6; /* verde más oscuro al pasar el mouse */
+    }
+  </style>
+
+</head>
+<body>
+ {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul style="color: green;">
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+<h1>Inventario Actual</h1>
+<table border="1">
+    <tr><th>ID</th><th>Producto</th><th>Stock</th></tr>
+    {% for prod in productos %}
+    <tr>
+        <td>{{ prod[0] }}</td>
+        <td>{{ prod[1] }}</td>
+        <td>{{ prod[2] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="/facturar">Crear Factura</a>
+</body>
+</html>
